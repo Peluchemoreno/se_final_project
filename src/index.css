@@ -1,1 +1,23 @@
 @import url('./vendor/normalize.css');
+@font-face {
+  font-family: "Inter";
+  src: url('./vendor/fonts/Inter/Inter-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: "Inter Bold";
+  src: url('./vendor/fonts/Inter/Inter-Bold.woff2') format('woff2');
+}
+* {
+  box-sizing: border-box;
+  font-family: 'Inter';
+}
+
+:root {
+  --white: #CFCFCF;
+  --dark-grey: #121212;
+  --light-grey: #3a3a3a;
+}
+
+html {
+  background: linear-gradient(to top, var(--dark-grey), 80%, var(--light-grey))
+}
