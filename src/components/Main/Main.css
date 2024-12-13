@@ -1,0 +1,11 @@
+.homepage{
+  padding: 0 40px;
+}
+
+.homepage__welcome{
+  color: var(--white);
+  font-size: 60px;
+  font-family: "Inter Bold";
+  margin: 0;
+  margin-top: 50px;
+}

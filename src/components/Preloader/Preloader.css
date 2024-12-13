@@ -1,0 +1,41 @@
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader__loader {
+  width: 300px;
+  animation: rotate 2s linear infinite;
+}
+
+.preloader__text{
+  margin-top: 10%;
+  color: var(--white);
+}
+
+@media screen and (max-width: 535px) {
+
+  .preloader{
+    padding: 20px;
+  }
+
+  .preloader__text{
+    margin-top: 35%;
+    font-size: 30px;
+  }
+
+  .preloader__loader{
+    width: 200px;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

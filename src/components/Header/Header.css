@@ -1,0 +1,37 @@
+.header__logo {
+  width: 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+}
+
+.header__user-logo {
+  background-color: var(--dark-grey);
+  border: 2px solid var(--green);
+  padding: 18px 32px;
+  color: var(--green);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.header__user-name {
+  margin: 0;
+  margin-right: 10px;
+}
+
+.header__search {
+  padding: 20px 24px;
+  border-radius: 100px;
+  border: none;
+  margin-right: 24px;
+  width: 400px;
+}

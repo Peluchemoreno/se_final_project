@@ -1,0 +1,17 @@
+.form__input {
+  width: 100%;
+  padding: 20px 24px;
+  border-radius: 30px;
+  border: none;
+  margin-bottom: 13px;
+}
+
+.form__label:last-of-type > input{
+  margin-bottom: 67px;
+}
+
+
+@media screen and (max-width: 535px) {
+
+
+}

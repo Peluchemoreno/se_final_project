@@ -7,6 +7,11 @@
   font-family: "Inter Bold";
   src: url('./vendor/fonts/Inter/Inter-Bold.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: "Inter Light";
+  src: url('./vendor/fonts/Inter/Inter-Light.woff2') format('woff2');
+}
 * {
   box-sizing: border-box;
   font-family: 'Inter';
@@ -16,8 +21,11 @@
   --white: #CFCFCF;
   --dark-grey: #121212;
   --light-grey: #3a3a3a;
+  --lighter-grey: #535353;
+  --green: #1db954;
 }
 
 html {
-  background: linear-gradient(to top, var(--dark-grey), 80%, var(--light-grey))
+  background: linear-gradient(to top, var(--dark-grey), 80%, var(--light-grey));
+  height: 100svh;
 }

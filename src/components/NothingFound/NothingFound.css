@@ -1,10 +1,12 @@
 .nothing-found-page {
   display: flex;
-  margin-top: 20%;
+  margin-top: 15%;
   justify-content: center;
-  height: 100vh;
+  
 }
 
 .nothing-found-page__message{
   color: var(--white);
+  margin: 0 auto;
+  text-align: center;
 }
