@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getPlaylists } from "../../utils/api";
 import Playlist from "../Playlist/Playlist";
 
-export default function Main({ currentUser, userId }) {
+export default function Main({ currentUser, userId, setActiveModal, setCurrentPlaylist }) {
   const [playlists, setPlaylists] = useState([]);
   
 
@@ -30,8 +30,11 @@ export default function Main({ currentUser, userId }) {
               <Playlist
                 key={playlist.snapshot_id}
                 name={playlist.name}
-                image={!playlist.images ? "" : playlist.images[0].url}
+                image={!playlist.images ? "https://picsum.photos/150/150" : playlist.images[0].url}
                 description={playlist.description === '' ? 'This playlist has no description. The music speaks for itself.' : playlist.description}
+                playlist={playlist}
+                setActiveModal={setActiveModal}
+                setCurrentPlaylist={setCurrentPlaylist}
               />
             );
           })}

@@ -1,5 +1,5 @@
 .homepage{
-  padding: 0 40px;
+  padding: 0px 40px;
 }
 
 .homepage__welcome{
@@ -7,9 +7,12 @@
   font-size: 60px;
   font-family: "Inter Bold";
   margin: 0;
-  margin-top: 50px;
+  padding-top: 50px;
+  padding-bottom: 5px;
   position: sticky;
-  top: 134px;
+  top: 84px;
+  border-bottom: 1px solid var(--white);
+  background-color: var(--dark-grey);
 }
 
 .homepage__playlist-list {

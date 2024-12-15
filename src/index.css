@@ -26,7 +26,8 @@
 }
 
 html {
-  background: linear-gradient(to top, var(--dark-grey), 80%, var(--light-grey));
+  /* background: linear-gradient(to top, var(--dark-grey), 80%, var(--light-grey)); */
+  background-color: var(--dark-grey);
   height: 100svh;
   position: relative;
 }

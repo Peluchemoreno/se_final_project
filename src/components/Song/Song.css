@@ -1,0 +1,28 @@
+.song {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 14px 20px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.song:hover{
+  background-color: var(--light-grey);
+}
+
+.song__playlist-image{
+  width: 70px;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.song__play-button{
+  background: none;
+  border: none;
+}
+
+.song__details{
+  display: flex;
+  align-items: center;
+}

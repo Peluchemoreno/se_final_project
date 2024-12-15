@@ -1,0 +1,28 @@
+.modal__playlist-image {
+  width: 200px;
+  height: 200px;
+  margin-right: 18px;
+  border-radius: 18px;
+}
+
+.modal__header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.modal__playlist-title{
+  width: 60%;
+  color: var(--white);
+  font-size: 24px;
+  margin: 0;
+}
+
+.modal__playlist-tracks{
+  height: 70%;
+  overflow: auto;
+  color: var(--white);
+}
+
+.modal__playlist-tracks-list{
+  padding: 10px;
+}

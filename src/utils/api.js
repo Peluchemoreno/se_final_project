@@ -29,3 +29,13 @@ export function getPlaylists(token, userId){
     }
   }).then(checkServerResponse)
 }
+
+export function getPlaylistTracks(token, playlistId){
+  return fetch(`${BASE_URL}playlists/${playlistId}/tracks`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`
+    }
+  }).then(checkServerResponse)
+}
