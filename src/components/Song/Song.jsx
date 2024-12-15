@@ -1,13 +1,18 @@
 import "./Song.css";
 import playButton from '../../assets/playbutton.svg'
 
-export default function Song({ name, playlist }) {
+export default function Song({ name, playlist, song }) {
+
+  function handleSongClick(){
+    console.log(song)
+  }
+
   return (
-    <li className="song">
+    <li onClick={handleSongClick} className="song">
       <div className="song__details">
         <img
           className="song__playlist-image"
-          src={!playlist.images ? "" : playlist.images[0].url}
+          src={song.album.images.length === 0 ? "https://picsum.photos/70/70" : song.album.images[0].url}
           alt="playlist"
         />
         {name}

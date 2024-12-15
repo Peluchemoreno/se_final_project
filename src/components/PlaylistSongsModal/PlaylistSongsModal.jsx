@@ -11,7 +11,6 @@ export default function PlaylistSongsModal({ isOpen, closeModal, playlist }) {
     const authToken = localStorage.getItem("access_token");
     getPlaylistTracks(authToken, playlist.id).then((data) => {
       setTracks(data.items);
-      console.log(data.items)
     });
   }, [playlist]);
 
@@ -28,7 +27,7 @@ export default function PlaylistSongsModal({ isOpen, closeModal, playlist }) {
       <section className="modal__playlist-tracks">
         {tracks.length === 0 ? <p>It seems that there are no tracks for this playlist... Pretty quiet in here.</p> : <ul className="modal__playlist-tracks-list">
           {tracks.map((track) => {
-            return <Song key={track.track.id} name={track.track.name} playlist={playlist} />;
+            return <Song key={track.track.id} name={track.track.name} playlist={playlist} song={track.track} />;
           })}
         </ul>}
       </section>
