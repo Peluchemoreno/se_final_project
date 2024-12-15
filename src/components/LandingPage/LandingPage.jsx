@@ -1,19 +1,15 @@
-import "./Signin.css";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import Preloader from "../Preloader/Preloader";
+import "./LandingPage.css";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import {
   generateCodeChallenge,
   requestAuthorization,
   getToken,
-  getUserProfile,
 } from "../../utils/auth";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { getUserProfile } from "../../utils/api";
+import Preloader from "../Preloader/Preloader";
 
-export default function Signin({
-  setCurrentUser,
-  setAuthenticated,
-}) {
+export default function LandingPage({ setCurrentUser, setAuthenticated, setUserId }) {
   const [loading, setLoading] = useState(false);
   const navigator = useNavigate();
 
@@ -53,13 +49,14 @@ export default function Signin({
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-    const token = localStorage.getItem("access_token");
+    const accessToken = localStorage.getItem("access_token");
 
-    if (token) {
-      setAuthenticated(true)
-      getUserProfile(token)
+    if (accessToken) {
+      setAuthenticated(true);
+      getUserProfile(accessToken)
         .then((user) => {
           setCurrentUser(user);
+          setUserId(user.id)
           console.log("User profile:", user);
         })
         .catch((err) => {
@@ -67,18 +64,22 @@ export default function Signin({
         });
       navigator("homepage");
     } else {
+      if (!code) {
+        return;
+      }
       getToken(code).then((authToken) => {
-        console.log(localStorage.getItem("access_token"))
+        console.log(localStorage.getItem("access_token"));
         getUserProfile(authToken)
-        .then((user) => {
-          setCurrentUser(user);
-          console.log("User profile:", user);
-        })
-        .catch((err) => {
-          console.error("Error fetching user profile:", err);
-        })
-      navigator("homepage");
-      })
+          .then((user) => {
+            setCurrentUser(user);
+            setUserId(user.id)
+            console.log("User profile:", user);
+          })
+          .catch((err) => {
+            console.error("Error fetching user profile:", err);
+          });
+        navigator("homepage");
+      });
     }
   }, []);
 
@@ -87,34 +88,19 @@ export default function Signin({
   }
 
   return (
-    <>
-      <ModalWithForm
-        title="Welcome to my Spotify project"
-        buttonText="Sign in"
-        buttonLoadingText="Signing in..."
-        handleClick={checkAuth}
-      >
-        <label htmlFor="email" className="form__label">
-          <input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Email"
-            required={true}
-            className="form__input"
-          />
-        </label>
-        <label htmlFor="password" className="form__label">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            required={true}
-            className="form__input"
-          />
-        </label>
-      </ModalWithForm>
-    </>
+    <main className="landing-page">
+      <div>
+        <h1 className="landing-page__title">Welcome to my Spotify project</h1>
+        <p className="landing-page__description">
+          This site will allow you to view your playlists, access your full
+          spotify profile, and even listen to music! Just click the button below
+          that says enter here to be transported to the site (after
+          authenticating of course).
+        </p>
+      </div>
+      <button className="landing-page__button" onClick={checkAuth}>
+        Enter here
+      </button>
+    </main>
   );
 }

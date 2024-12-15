@@ -1,6 +1,5 @@
 const clientId = "49529b74a64149a49bdb35e5eaf8d318";
 const redirectUri = "http://localhost:5000";
-// const url =
 
 export async function generateCodeChallenge() {
   const generateRandomString = (length) => {
@@ -28,16 +27,19 @@ export async function generateCodeChallenge() {
   const hashed = await sha256(codeVerifier);
   const codeChallenge = base64encode(hashed);
 
+  console.log("Code successfully generated: ", codeChallenge)
   return { codeVerifier, codeChallenge };
 }
 
 export function requestAuthorization(codeVerifier, codeChallenge) {
+  console.log('Requesting Authorization')
   const scope =
     "user-read-private user-read-email user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-read-collaborative";
   const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   // generated in the previous step
   window.localStorage.setItem("code_verifier", codeVerifier);
+  window.localStorage.setItem("code_challenge", codeChallenge)
 
   const params = {
     response_type: "code",
@@ -53,6 +55,7 @@ export function requestAuthorization(codeVerifier, codeChallenge) {
 }
 
 export const getToken = async (code) => {
+  console.log("Getting token")
   const codeVerifier = localStorage.getItem("code_verifier");
   const payload = {
     method: "POST",
@@ -72,7 +75,6 @@ export const getToken = async (code) => {
   const response = await body.json();
 
   if (response.access_token) {
-    console.log("Access token:", response.access_token);
     localStorage.setItem("access_token", response.access_token);
     return response.access_token;
   } else {
@@ -80,19 +82,4 @@ export const getToken = async (code) => {
   }
 };
 
-export function getUserProfile(token) {
-  return fetch("https://api.spotify.com/v1/me", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    console.log("res", res);
-    if (res.ok) {
-      return res.json();
-    } else {
-      return new Error("Error getting user profile");
-    }
-  });
-}
+

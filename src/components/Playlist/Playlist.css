@@ -1,0 +1,41 @@
+.playlist {
+  display: flex;
+  max-width: 940px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  
+}
+
+.playlist:hover > .playlist__details > .playlist__name{
+  color: var(--green);
+}
+
+.playlist:first-of-type{
+  margin-top: 20px;
+}
+
+.playlist__image{
+  width: 150px;
+  height: 150px;
+  align-self: center;
+}
+
+.playlist__name{
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0;
+  color: var(--white);
+  transition: color .2s ease;
+}
+
+.playlist__description{
+  font-size: 12px;
+  line-height: 20px;
+  margin: 0;
+  margin-top: 10px;
+  color: var(--white);
+}
+
+.playlist__details {
+  margin-left: 24px;
+}

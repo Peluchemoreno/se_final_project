@@ -28,4 +28,5 @@
 html {
   background: linear-gradient(to top, var(--dark-grey), 80%, var(--light-grey));
   height: 100svh;
+  position: relative;
 }

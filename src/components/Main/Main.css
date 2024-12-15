@@ -8,4 +8,13 @@
   font-family: "Inter Bold";
   margin: 0;
   margin-top: 50px;
+  position: sticky;
+  top: 134px;
+}
+
+.homepage__playlist-list {
+  list-style-type: none;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
 }
