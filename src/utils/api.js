@@ -20,22 +20,56 @@ export function getUserProfile(token) {
   }).then(checkServerResponse);
 }
 
-export function getPlaylists(token, userId){
+export function getPlaylists(token, userId) {
   return fetch(`${BASE_URL}users/${userId}/playlists`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`
-    }
-  }).then(checkServerResponse)
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkServerResponse);
 }
 
-export function getPlaylistTracks(token, playlistId){
+export function getPlaylistTracks(token, playlistId) {
   return fetch(`${BASE_URL}playlists/${playlistId}/tracks`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkServerResponse);
+}
+
+export function playSong(token, songUri, deviceId) {
+  return fetch(`${BASE_URL}me/player/play/device_id=${deviceId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      context_uri: songUri,
+      position_ms: 0,
+    }),
+  }).then(checkServerResponse);
+}
+
+export function pauseSong(token) {
+  return fetch(`${BASE_URL}/me/player/pause`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkServerResponse);
+}
+
+export function getCurrentDevice(token) {
+  return fetch(`${BASE_URL}me/player/devices`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`
     }
-  }).then(checkServerResponse)
+  }).then(checkServerResponse);
 }

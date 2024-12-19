@@ -1,14 +1,17 @@
 import "./Song.css";
 import playButton from '../../assets/playbutton.svg'
 
-export default function Song({ name, playlist, song }) {
+export default function Song({ name, song, setActiveModal, setCurrentSong }) {
 
-  function handleSongClick(){
-    console.log(song)
+  function handleSongClick(song){
+    setActiveModal('musicPlayer')
+    setCurrentSong(song)
   }
 
   return (
-    <li onClick={handleSongClick} className="song">
+    <li onClick={()=>{
+      handleSongClick(song)
+    }} className="song">
       <div className="song__details">
         <img
           className="song__playlist-image"

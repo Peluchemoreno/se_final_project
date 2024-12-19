@@ -6,13 +6,15 @@ import { useState } from "react";
 import LandingPage from "../LandingPage/LandingPage";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import PlaylistSongsModal from "../PlaylistSongsModal/PlaylistSongsModal";
+import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [userId, setUserId] = useState("");
-  const [currentPlaylist, setCurrentPlaylist] = useState({})
-  const [activeModal, setActiveModal] = useState('')
+  const [currentPlaylist, setCurrentPlaylist] = useState({});
+  const [currentSong, setCurrentSong] = useState({})
+  const [activeModal, setActiveModal] = useState("");
 
   function handleSetCurrentUser(user) {
     setCurrentUser(user);
@@ -26,12 +28,12 @@ function App() {
     setUserId(id);
   }
 
-  function handleSetPlaylist(playlist){
-    setCurrentPlaylist(playlist)
+  function handleSetPlaylist(playlist) {
+    setCurrentPlaylist(playlist);
   }
 
-  function closeModal(){
-    setActiveModal('')
+  function closeModal() {
+    setActiveModal("");
   }
 
   return (
@@ -55,13 +57,30 @@ function App() {
             path="/homepage"
             element={
               <ProtectedRoute authenticated={authenticated}>
-                <Main currentUser={currentUser} userId={userId} setActiveModal={setActiveModal} setCurrentPlaylist={handleSetPlaylist}/>
+                <Main
+                  currentUser={currentUser}
+                  userId={userId}
+                  setActiveModal={setActiveModal}
+                  setCurrentPlaylist={handleSetPlaylist}
+                />
               </ProtectedRoute>
             }
           />
         </Routes>
       </div>
-      <PlaylistSongsModal isOpen={activeModal === 'playlistModal'} closeModal={closeModal} playlist={currentPlaylist}/>
+      <PlaylistSongsModal
+        isOpen={activeModal === "playlistModal"}
+        closeModal={closeModal}
+        playlist={currentPlaylist}
+        setActiveModal={setActiveModal}
+        setCurrentSong={setCurrentSong}
+      />
+      <MusicPlayer
+        isOpen={activeModal === "musicPlayer"}
+        closeModal={closeModal}
+        song={currentSong}
+        playlist={currentPlaylist}
+      />
     </>
   );
 }
